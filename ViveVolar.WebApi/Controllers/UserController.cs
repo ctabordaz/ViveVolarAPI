@@ -31,12 +31,7 @@ namespace ViveVolar.WebApi.Controllers
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
-        }
-
-        [Route("getemail")]
-        public async void getemail(string email){
-            
-        }
+        }       
 
         public async Task<HttpResponseMessage> Get(string email)
         {
