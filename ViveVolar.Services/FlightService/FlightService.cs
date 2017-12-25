@@ -10,11 +10,10 @@ namespace ViveVolar.Services.FlightService
     {
         private IFlightRepository _flightRepository;
 
-        public FlightService()
+        public FlightService(IFlightRepository _flightRepository)
         {
-            this._flightRepository = new FlightRepository();
+            this._flightRepository = _flightRepository;
         }
-
 
         public async Task<FlightEntity> AddAsync(FlightEntity entity)
         {

@@ -16,7 +16,12 @@ namespace ViveVolar.WebApi.Controllers
 
         public UserController()
         {
-            this._userService = new UserService();
+
+        }
+
+        public UserController(IUserService _userService)
+        {
+            this._userService = _userService;
         }
 
         public async Task<HttpResponseMessage> Get()

@@ -13,9 +13,9 @@ namespace ViveVolar.Services.BookingService
     {
         private IBookingRepository _bookingRepository;
 
-        public BookingService()
+        public BookingService(IBookingRepository _bookingRepository)
         {
-            this._bookingRepository = new BookingRepository();
+            this._bookingRepository =_bookingRepository;
         }
 
 

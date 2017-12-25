@@ -10,9 +10,9 @@ namespace ViveVolar.Services.UserService
     {
         private IUserRepository _userRepository;
 
-        public UserService()
+        public UserService(IUserRepository _userRepository)
         {
-            this._userRepository = new UserRepository();
+            this._userRepository = _userRepository;
         }
 
 
