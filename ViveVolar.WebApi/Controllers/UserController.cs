@@ -12,12 +12,8 @@ namespace ViveVolar.WebApi.Controllers
     [RoutePrefix("api/User")]
     public class UserController : ApiController
     {
-        private IUserService _userService;
-
-        public UserController()
-        {
-
-        }
+        private readonly IUserService _userService;
+             
 
         public UserController(IUserService _userService)
         {

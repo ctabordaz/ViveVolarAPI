@@ -4,29 +4,28 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using ViveVolar.Entities;
-using ViveVolar.Services.FlightService;
+using ViveVolar.Services.BookingService;
 
 namespace ViveVolar.WebApi.Controllers
 {
-    [RoutePrefix("api/Flight")]
-    public class FlightController: ApiController
+    [RoutePrefix("api/Booking")]
+    public class BookingController : ApiController
     {
-        private readonly IFlightService _flightService;
+        private readonly IBookingService _bookingService;
 
-        public FlightController(IFlightService _flightService)
+        public BookingController(IBookingService _bookingService)
         {
-            this._flightService = _flightService;
+            this._bookingService = _bookingService;
         }
 
         public async Task<HttpResponseMessage> Get()
         {
             try
             {
-                var flightlist = await this._flightService.GetAllAsync();
-                return Request.CreateResponse(HttpStatusCode.OK, flightlist);
+                var bookinglist = await this._bookingService.GetAllAsync();
+                return Request.CreateResponse(HttpStatusCode.OK, bookinglist);
             }
             catch (Exception)
             {
@@ -39,8 +38,8 @@ namespace ViveVolar.WebApi.Controllers
         {
             try
             {
-                var flight = await this._flightService.GetAsync(id);
-                return Request.CreateResponse(HttpStatusCode.OK, flight);
+                var booking = await this._bookingService.GetAsync(id);
+                return Request.CreateResponse(HttpStatusCode.OK, booking);
             }
             catch (Exception)
             {
@@ -49,12 +48,12 @@ namespace ViveVolar.WebApi.Controllers
             }
         }
 
-        public async Task<HttpResponseMessage> Post(FlightEntity newFlight)
+        public async Task<HttpResponseMessage> Post(BookingEntity newBooking)
         {
             try
             {
-                var flight = await this._flightService.AddOrUpdateAsync(newFlight);
-                return Request.CreateResponse(HttpStatusCode.OK, flight);
+                var booking = await this._bookingService.AddOrUpdateAsync(newBooking);
+                return Request.CreateResponse(HttpStatusCode.OK, booking);
             }
             catch (Exception)
             {
@@ -67,8 +66,8 @@ namespace ViveVolar.WebApi.Controllers
         {
             try
             {
-                var flight = await this._flightService.DeleteAsync(id);
-                return Request.CreateResponse(HttpStatusCode.OK, flight);
+                var booking = await this._bookingService.DeleteAsync(id);
+                return Request.CreateResponse(HttpStatusCode.OK, booking);
             }
             catch (Exception)
             {
@@ -76,6 +75,5 @@ namespace ViveVolar.WebApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-
     }
 }
