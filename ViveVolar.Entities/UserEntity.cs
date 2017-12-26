@@ -9,13 +9,6 @@ namespace ViveVolar.Entities
 
         public string Rol { get; set; }
 
-        //[IgnoreProperty]
-        //public string Email
-        //{
-        //    get { return this.RowKey; }
-        //    set { this.RowKey = value; }
-        //}
-
         public UserEntity()
         {
             this.PartitionKey = "User";          

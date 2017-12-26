@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using ViveVolar.Entities;
+using ViveVolar.Models;
 using ViveVolar.Services.UserService;
 
 namespace ViveVolar.WebApi.Controllers
@@ -48,7 +49,7 @@ namespace ViveVolar.WebApi.Controllers
             }
         }
 
-        public async Task<HttpResponseMessage> Post(UserEntity newUser)
+        public async Task<HttpResponseMessage> Post(User newUser)
         {
             try
             {

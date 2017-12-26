@@ -18,41 +18,43 @@ namespace ViveVolar.Services.UserService
             this._userRepository = _userRepository;
         }
 
-
-        public async Task<UserEntity> AddAsync(UserEntity entity)
+        public async Task<User> AddAsync(User entity)
         {
-            return await this._userRepository.AddAsync(entity);
+            var userEntity = Mapper.Map<UserEntity>(entity);
+            return Mapper.Map<User>(await this._userRepository.AddAsync(userEntity));
         }
 
-        public async Task<UserEntity> AddOrUpdateAsync(UserEntity entity)
+        public async Task<User> AddOrUpdateAsync(User entity)
         {
-            return await this._userRepository.AddOrUpdateAsync(entity);
+            var userEntity = Mapper.Map<UserEntity>(entity);
+            return Mapper.Map<User>(await this._userRepository.AddOrUpdateAsync(userEntity));
         }
 
-        public async Task<UserEntity> DeleteAsync(string id)
+        public async Task<User> DeleteAsync(string id)
         {
             var entityToDelete = await this._userRepository.GetAsync(id);
-            return await this._userRepository.DeleteAsync(entityToDelete);
+            return Mapper.Map<User>(await this._userRepository.DeleteAsync(entityToDelete));
         }
 
-        public async Task<IEnumerable<UserEntity>> GetAllAsync()
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
-            return await this._userRepository.GetAllAsync();
+            return Mapper.Map<IEnumerable<User>>(await this._userRepository.GetAllAsync());
         }
 
-        public async Task<UserEntity> GetAsync(string id)
+        public async Task<User> GetAsync(string id)
         {
-            return await this._userRepository.GetAsync(id);
+            return Mapper.Map<User>( await this._userRepository.GetAsync(id));
         }
        
-        public async Task<IEnumerable<UserEntity>> QueryAsync(TableQuery<UserEntity> query)
+        public async Task<IEnumerable<User>> QueryAsync(TableQuery<UserEntity> query)
         {
-            return await this._userRepository.QueryAsync(query);
+            return Mapper.Map <IEnumerable<User>>( await this._userRepository.QueryAsync(query));
         }
 
-        public async Task<UserEntity> UpdateAsync(UserEntity entity)
+        public async Task<User> UpdateAsync(User entity)
         {
-            return await this._userRepository.UpdateAsync(entity);
+            var userEntity = Mapper.Map<UserEntity>(entity);
+            return Mapper.Map<User>( await this._userRepository.UpdateAsync(userEntity));
         }
 
      

@@ -1,7 +1,9 @@
-﻿using Microsoft.WindowsAzure.Storage.Table;
+﻿using AutoMapper;
+using Microsoft.WindowsAzure.Storage.Table;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ViveVolar.Entities;
+using ViveVolar.Models;
 using ViveVolar.Repositories.FlightRepository;
 
 namespace ViveVolar.Services.FlightService
@@ -15,40 +17,43 @@ namespace ViveVolar.Services.FlightService
             this._flightRepository = _flightRepository;
         }
 
-        public async Task<FlightEntity> AddAsync(FlightEntity entity)
+        public async Task<Flight> AddAsync(Flight entity)
         {
-            return await this._flightRepository.AddAsync(entity);
+            var flightEntity = Mapper.Map<FlightEntity>(entity);
+            return Mapper.Map<Flight>( await this._flightRepository.AddAsync(flightEntity));
         }
 
-        public async Task<FlightEntity> AddOrUpdateAsync(FlightEntity entity)
+        public async Task<Flight> AddOrUpdateAsync(Flight entity)
         {
-            return await this._flightRepository.AddOrUpdateAsync(entity);
+            var flightEntity = Mapper.Map<FlightEntity>(entity);
+            return Mapper.Map<Flight>( await this._flightRepository.AddOrUpdateAsync(flightEntity));
         }
 
-        public async Task<FlightEntity> DeleteAsync(string id)
+        public async Task<Flight> DeleteAsync(string id)
         {
             var entityToDelete = await this._flightRepository.GetAsync(id);
-            return await this._flightRepository.DeleteAsync(entityToDelete);
+            return Mapper.Map<Flight>( await this._flightRepository.DeleteAsync(entityToDelete));
         }
 
-        public async Task<IEnumerable<FlightEntity>> GetAllAsync()
+        public async Task<IEnumerable<Flight>> GetAllAsync()
         {
-            return await this._flightRepository.GetAllAsync();
+            return Mapper.Map<IEnumerable<Flight>>( await this._flightRepository.GetAllAsync());
         }
 
-        public async Task<FlightEntity> GetAsync(string id)
+        public async Task<Flight> GetAsync(string id)
         {
-            return await this._flightRepository.GetAsync(id);
+            return Mapper.Map<Flight>( await this._flightRepository.GetAsync(id));
         }
 
-        public async Task<IEnumerable<FlightEntity>> QueryAsync(TableQuery<FlightEntity> query)
+        public async Task<IEnumerable<Flight>> QueryAsync(TableQuery<FlightEntity> query)
         {
-            return await this._flightRepository.QueryAsync(query);
+            return Mapper.Map<IEnumerable<Flight>>( await this._flightRepository.QueryAsync(query));
         }
 
-        public async Task<FlightEntity> UpdateAsync(FlightEntity entity)
+        public async Task<Flight> UpdateAsync(Flight entity)
         {
-            return await this._flightRepository.UpdateAsync(entity);
+            var flightEntity = Mapper.Map<FlightEntity>(entity);
+            return Mapper.Map<Flight>(  await this._flightRepository.UpdateAsync(flightEntity));
         }
     }
 }

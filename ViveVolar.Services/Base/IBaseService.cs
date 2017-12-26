@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 
 namespace ViveVolar.Services.Base
 {
-    public interface IBaseService<T> where T : TableEntity
+    public interface IBaseService<T,TE> 
+        where T : class 
+        where TE: TableEntity
     {
         Task<IEnumerable<T>> GetAllAsync();
-        Task<IEnumerable<T>> QueryAsync(TableQuery<T> query);
+        Task<IEnumerable<T>> QueryAsync(TableQuery<TE> query);
         Task<T> GetAsync(string id);
         Task<T> AddOrUpdateAsync(T entity);
         Task<T> DeleteAsync(string id);

@@ -5,7 +5,7 @@ using ViveVolar.Services.Base;
 
 namespace ViveVolar.Services.UserService
 {
-    public interface IUserService: IBaseService<UserEntity>
+    public interface IUserService: IBaseService<User,UserEntity>
     {
         
     }

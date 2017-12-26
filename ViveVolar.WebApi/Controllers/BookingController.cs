@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using ViveVolar.Entities;
+using ViveVolar.Models;
 using ViveVolar.Services.BookingService;
 
 namespace ViveVolar.WebApi.Controllers
@@ -48,7 +49,7 @@ namespace ViveVolar.WebApi.Controllers
             }
         }
 
-        public async Task<HttpResponseMessage> Post(BookingEntity newBooking)
+        public async Task<HttpResponseMessage> Post(Booking newBooking)
         {
             try
             {

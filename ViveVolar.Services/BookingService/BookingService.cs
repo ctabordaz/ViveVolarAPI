@@ -1,10 +1,12 @@
-﻿using Microsoft.WindowsAzure.Storage.Table;
+﻿using AutoMapper;
+using Microsoft.WindowsAzure.Storage.Table;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViveVolar.Entities;
+using ViveVolar.Models;
 using ViveVolar.Repositories.BookingRepository;
 
 namespace ViveVolar.Services.BookingService
@@ -19,40 +21,43 @@ namespace ViveVolar.Services.BookingService
         }
 
 
-        public async Task<BookingEntity> AddAsync(BookingEntity entity)
+        public async Task<Booking> AddAsync(Booking entity)
         {
-            return await this._bookingRepository.AddAsync(entity);
+            var bookingEntity = Mapper.Map<BookingEntity>(entity);
+            return Mapper.Map<Booking>( await this._bookingRepository.AddAsync(bookingEntity));
         }
 
-        public async Task<BookingEntity> AddOrUpdateAsync(BookingEntity entity)
+        public async Task<Booking> AddOrUpdateAsync(Booking entity)
         {
-            return await this._bookingRepository.AddOrUpdateAsync(entity);
+            var bookingEntity = Mapper.Map<BookingEntity>(entity);
+            return Mapper.Map<Booking>( await this._bookingRepository.AddOrUpdateAsync(bookingEntity));
         }
 
-        public async Task<BookingEntity> DeleteAsync(string id)
+        public async Task<Booking> DeleteAsync(string id)
         {
             var entityToDelete = await this._bookingRepository.GetAsync(id);
-            return await this._bookingRepository.DeleteAsync(entityToDelete);
+            return Mapper.Map<Booking>( await this._bookingRepository.DeleteAsync(entityToDelete));
         }
 
-        public async Task<IEnumerable<BookingEntity>> GetAllAsync()
+        public async Task<IEnumerable<Booking>> GetAllAsync()
         {
-            return await this._bookingRepository.GetAllAsync();
+            return Mapper.Map<IEnumerable<Booking>>( await this._bookingRepository.GetAllAsync());
         }
 
-        public async Task<BookingEntity> GetAsync(string id)
+        public async Task<Booking> GetAsync(string id)
         {
-            return await this._bookingRepository.GetAsync(id);
+            return Mapper.Map<Booking>(await this._bookingRepository.GetAsync(id));
         }
 
-        public async Task<IEnumerable<BookingEntity>> QueryAsync(TableQuery<BookingEntity> query)
+        public async Task<IEnumerable<Booking>> QueryAsync(TableQuery<BookingEntity> query)
         {
-            return await this._bookingRepository.QueryAsync(query);
+            return Mapper.Map<IEnumerable<Booking>>( await this._bookingRepository.QueryAsync(query));
         }
 
-        public async Task<BookingEntity> UpdateAsync(BookingEntity entity)
+        public async Task<Booking> UpdateAsync(Booking entity)
         {
-            return await this._bookingRepository.UpdateAsync(entity);
+            var bookingEntity = Mapper.Map<BookingEntity>(entity);
+            return Mapper.Map<Booking>( await this._bookingRepository.UpdateAsync(bookingEntity));
         }
 
 

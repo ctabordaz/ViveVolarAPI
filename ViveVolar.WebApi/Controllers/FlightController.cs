@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using ViveVolar.Entities;
+using ViveVolar.Models;
 using ViveVolar.Services.FlightService;
 
 namespace ViveVolar.WebApi.Controllers
@@ -49,7 +50,7 @@ namespace ViveVolar.WebApi.Controllers
             }
         }
 
-        public async Task<HttpResponseMessage> Post(FlightEntity newFlight)
+        public async Task<HttpResponseMessage> Post(Flight newFlight)
         {
             try
             {

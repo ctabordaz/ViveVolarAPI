@@ -20,6 +20,7 @@ namespace ViveVolar.WebApi.Mapper
 
         public DefaultProfile()
         {
+            //Entity to Model
             CreateMap<UserEntity, User>()
                 .ForMember(g => g.Email, map => map.MapFrom(vm => vm.RowKey));
 
@@ -28,7 +29,7 @@ namespace ViveVolar.WebApi.Mapper
 
             CreateMap<BookingEntity, Booking>();
                 
-
+            //Model to Entity
             CreateMap<User, UserEntity>()
                 .ForMember(g=> g.RowKey, map => map.MapFrom(vm => vm.Email));
 
