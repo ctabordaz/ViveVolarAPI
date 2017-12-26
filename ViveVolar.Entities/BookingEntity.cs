@@ -10,7 +10,7 @@ namespace ViveVolar.Entities
     public class BookingEntity : TableEntity
     {
         public int FlightId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int Chairs { get; set; }
 
         public BookingEntity()

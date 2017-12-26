@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViveVolar.Repositories", "V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViveVolar.Services", "ViveVolar.Services\ViveVolar.Services.csproj", "{8E59E589-3E3F-4718-AAAF-E2B66D939F25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViveVolar.Models", "ViveVolar.Models\ViveVolar.Models.csproj", "{1E674521-15C1-41DF-891F-E79A8F7BE7C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8E59E589-3E3F-4718-AAAF-E2B66D939F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E59E589-3E3F-4718-AAAF-E2B66D939F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E59E589-3E3F-4718-AAAF-E2B66D939F25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E674521-15C1-41DF-891F-E79A8F7BE7C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E674521-15C1-41DF-891F-E79A8F7BE7C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E674521-15C1-41DF-891F-E79A8F7BE7C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E674521-15C1-41DF-891F-E79A8F7BE7C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

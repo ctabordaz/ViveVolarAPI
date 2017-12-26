@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.WindowsAzure.Storage.Table;
 using ViveVolar.Entities;
+using ViveVolar.Models;
 using ViveVolar.Repositories.UserRepository;
 
 namespace ViveVolar.Services.UserService
@@ -41,7 +44,7 @@ namespace ViveVolar.Services.UserService
         {
             return await this._userRepository.GetAsync(id);
         }
-
+       
         public async Task<IEnumerable<UserEntity>> QueryAsync(TableQuery<UserEntity> query)
         {
             return await this._userRepository.QueryAsync(query);
@@ -51,5 +54,7 @@ namespace ViveVolar.Services.UserService
         {
             return await this._userRepository.UpdateAsync(entity);
         }
+
+     
     }
 }

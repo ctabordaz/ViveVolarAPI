@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
     </Reference>
@@ -54,6 +57,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
@@ -78,6 +82,10 @@
     <ProjectReference Include="..\ViveVolar.Entities\ViveVolar.Entities.csproj">
       <Project>{1E11FC5E-BA77-4D2D-B04C-D17740742ADB}</Project>
       <Name>ViveVolar.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViveVolar.Models\ViveVolar.Models.csproj">
+      <Project>{1E674521-15C1-41DF-891F-E79A8F7BE7C7}</Project>
+      <Name>ViveVolar.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViveVolar.Repositories\ViveVolar.Repositories.csproj">
       <Project>{b2be675c-c7e1-48c6-bf51-9382d70665d9}</Project>

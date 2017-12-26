@@ -15,12 +15,6 @@ namespace ViveVolar.Entities
 
         public int Price { get; set; }
 
-        [IgnoreProperty]
-        public int FlightNumber
-        {
-            get { return Int32.Parse(this.RowKey); }
-            set { this.RowKey = value.ToString(); }
-        }
         public FlightEntity()
         {
           this.PartitionKey = "Flight";

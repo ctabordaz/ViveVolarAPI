@@ -24,7 +24,7 @@ namespace ViveVolar.WebApi.Controllers
         {
             try
             {
-                var userList = await this._userService.GetAllAsync();
+                var userList = await this._userService.GetAllAsync();               
                 return Request.CreateResponse(HttpStatusCode.OK, userList);
             }
             catch (Exception)

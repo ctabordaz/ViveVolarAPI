@@ -50,6 +50,9 @@
     <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.4.0.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
     </Reference>
@@ -130,6 +133,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mapper\AutoMapperConfiguration.cs" />
+    <Compile Include="Mapper\DefaultProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +154,10 @@
     <ProjectReference Include="..\ViveVolar.Entities\ViveVolar.Entities.csproj">
       <Project>{1e11fc5e-ba77-4d2d-b04c-d17740742adb}</Project>
       <Name>ViveVolar.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViveVolar.Models\ViveVolar.Models.csproj">
+      <Project>{1E674521-15C1-41DF-891F-E79A8F7BE7C7}</Project>
+      <Name>ViveVolar.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViveVolar.Repositories\ViveVolar.Repositories.csproj">
       <Project>{B2BE675C-C7E1-48C6-BF51-9382D70665D9}</Project>
