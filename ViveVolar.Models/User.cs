@@ -15,5 +15,7 @@ namespace ViveVolar.Models
         public string Rol { get; set; }
 
         public IEnumerable<Flight> Flights { get; set; }
+
+        public IEnumerable<Booking> Bookings { get; set; }
     }
 }

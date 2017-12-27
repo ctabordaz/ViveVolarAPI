@@ -8,7 +8,7 @@ namespace ViveVolar.Models
 {
     public class Booking
     {
-        public int FlightId { get; set; }
+        public string FlightId { get; set; }
 
         public string UserId { get; set; }
 

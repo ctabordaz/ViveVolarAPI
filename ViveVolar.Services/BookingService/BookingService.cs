@@ -49,7 +49,13 @@ namespace ViveVolar.Services.BookingService
             return Mapper.Map<Booking>(await this._bookingRepository.GetAsync(id));
         }
 
-        public async Task<IEnumerable<Booking>> QueryAsync(TableQuery<BookingEntity> query)
+        public async Task<IEnumerable<Booking>> GetByUserIdAsync(string user)
+        {
+            string query = TableQuery.GenerateFilterCondition("UserId", QueryComparisons.Equal, user);
+            return await QueryAsync(query);
+        }
+
+        public async Task<IEnumerable<Booking>> QueryAsync(string query)
         {
             return Mapper.Map<IEnumerable<Booking>>( await this._bookingRepository.QueryAsync(query));
         }

@@ -44,8 +44,16 @@ namespace ViveVolar.Repositories.BookingRepository
             return (BookingEntity)await this._tableRepository.GetAsync<BookingEntity>(_partitionKey, rowKey);
         }
 
-        public async Task<IEnumerable<BookingEntity>> QueryAsync(TableQuery<BookingEntity> query)
+        public async Task<IEnumerable<BookingEntity>> QueryAsync(string squery)
         {
+
+            TableQuery<BookingEntity> query = new TableQuery<BookingEntity>()
+                .Where(
+                TableQuery.CombineFilters(
+                        TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, _partitionKey),
+                        TableOperators.And,
+                        squery
+                ));
             return await this._tableRepository.QueryAsync<BookingEntity>(query);
         }
 

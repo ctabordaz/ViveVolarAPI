@@ -44,8 +44,15 @@ namespace ViveVolar.Repositories.FlightRepository
             return (FlightEntity)await this._tableRepository.GetAsync<FlightEntity>(_partitionKey, rowKey);
         }
 
-        public async Task<IEnumerable<FlightEntity>> QueryAsync(TableQuery<FlightEntity> query)
+        public async Task<IEnumerable<FlightEntity>> QueryAsync(string squery)
         {
+            TableQuery<FlightEntity> query = new TableQuery<FlightEntity>()
+                .Where(
+                TableQuery.CombineFilters(
+                        TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, _partitionKey),
+                        TableOperators.And,
+                        squery
+                ));
             return await this._tableRepository.QueryAsync<FlightEntity>(query);
         }
 

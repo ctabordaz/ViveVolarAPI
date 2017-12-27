@@ -6,16 +6,22 @@ using Microsoft.WindowsAzure.Storage.Table;
 using ViveVolar.Entities;
 using ViveVolar.Models;
 using ViveVolar.Repositories.UserRepository;
+using ViveVolar.Services.BookingService;
+using ViveVolar.Services.FlightService;
 
 namespace ViveVolar.Services.UserService
 {
     public class UserService : IUserService
     {
-        private IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IFlightService _flightService;
+        private readonly IBookingService _bookingServie;
 
-        public UserService(IUserRepository _userRepository)
+        public UserService(IUserRepository _userRepository, IFlightService _flightService, IBookingService _bookingServie)
         {
             this._userRepository = _userRepository;
+            this._flightService = _flightService;
+            this._bookingServie = _bookingServie;
         }
 
         public async Task<User> AddAsync(User entity)
@@ -43,10 +49,13 @@ namespace ViveVolar.Services.UserService
 
         public async Task<User> GetAsync(string id)
         {
-            return Mapper.Map<User>( await this._userRepository.GetAsync(id));
+            var user = Mapper.Map<User>( await this._userRepository.GetAsync(id));
+            user.Flights = await this._flightService.GetByUserIdAsync(id);
+            user.Bookings = await this._bookingServie.GetByUserIdAsync(id);
+            return user;
         }
        
-        public async Task<IEnumerable<User>> QueryAsync(TableQuery<UserEntity> query)
+        public async Task<IEnumerable<User>> QueryAsync(string query)
         {
             return Mapper.Map <IEnumerable<User>>( await this._userRepository.QueryAsync(query));
         }

@@ -10,7 +10,7 @@ namespace ViveVolar.Repositories.Base
     public interface IRepository<T> where T: ITableEntity
     {
         Task<IEnumerable<T>> GetAllAsync();
-        Task<IEnumerable<T>> QueryAsync(TableQuery<T> query);
+        Task<IEnumerable<T>> QueryAsync(string squery);
         Task<T> GetAsync(string rowKey) ;
         Task<T> AddOrUpdateAsync(T entity);
         Task<T> DeleteAsync(T entity);

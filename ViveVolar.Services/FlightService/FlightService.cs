@@ -45,7 +45,13 @@ namespace ViveVolar.Services.FlightService
             return Mapper.Map<Flight>( await this._flightRepository.GetAsync(id));
         }
 
-        public async Task<IEnumerable<Flight>> QueryAsync(TableQuery<FlightEntity> query)
+        public async Task<IEnumerable<Flight>> GetByUserIdAsync(string userId) 
+        {
+            string query = TableQuery.GenerateFilterCondition("UserId", QueryComparisons.Equal, userId);
+            return await QueryAsync(query);
+        }
+
+        public async Task<IEnumerable<Flight>> QueryAsync(string query)
         {
             return Mapper.Map<IEnumerable<Flight>>( await this._flightRepository.QueryAsync(query));
         }

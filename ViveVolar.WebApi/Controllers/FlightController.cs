@@ -57,7 +57,7 @@ namespace ViveVolar.WebApi.Controllers
                 var flight = await this._flightService.AddOrUpdateAsync(newFlight);
                 return Request.CreateResponse(HttpStatusCode.OK, flight);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);

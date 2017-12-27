@@ -18,6 +18,8 @@ namespace ViveVolar.Models
 
         public int Price { get; set; }
         
-        public int FlightNumber { get; set; }
+        public string FlightNumber { get; set; }
+
+        public string UserId { get; set; }
     }
 }

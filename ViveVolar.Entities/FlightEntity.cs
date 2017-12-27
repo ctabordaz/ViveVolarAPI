@@ -15,6 +15,8 @@ namespace ViveVolar.Entities
 
         public int Price { get; set; }
 
+        public string UserId { get; set; }
+
         public FlightEntity()
         {
           this.PartitionKey = "Flight";
