@@ -6,12 +6,14 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using ViveVolar.Entities;
 using ViveVolar.Models;
 using ViveVolar.Services.FlightService;
 
 namespace ViveVolar.WebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Flight")]
     public class FlightController: ApiController
     {
