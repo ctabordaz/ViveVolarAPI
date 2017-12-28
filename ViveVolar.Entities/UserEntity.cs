@@ -9,6 +9,9 @@ namespace ViveVolar.Entities
 
         public string Rol { get; set; }
 
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
+
         public UserEntity()
         {
             this.PartitionKey = "User";          

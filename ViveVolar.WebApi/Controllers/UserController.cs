@@ -7,10 +7,15 @@ using System.Web.Http;
 using ViveVolar.Entities;
 using ViveVolar.Models;
 using ViveVolar.Services.UserService;
+using ViveVolar.WebApi.Filters;
 
 namespace ViveVolar.WebApi.Controllers
 {
+
     [RoutePrefix("api/User")]
+    [JwtAuthentication]
+    [Authorize]
+
     public class UserController : ApiController
     {
         private readonly IUserService _userService;
@@ -49,18 +54,45 @@ namespace ViveVolar.WebApi.Controllers
             }
         }
 
+        [AllowAnonymous]
         public async Task<HttpResponseMessage> Post(User newUser)
         {
             try
             {
-                var user = await this._userService.AddOrUpdateAsync(newUser);
+                var user = await this._userService.Create(newUser,newUser.Password);
                 return Request.CreateResponse(HttpStatusCode.OK, user);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
+        }
+        [AllowAnonymous]
+        [Route("auth")]
+        [HttpPost()]
+
+        public async Task<HttpResponseMessage> Authenticate(User login)
+        {
+            try
+            {
+                User user = await _userService.Authenticate(login.Email, login.Password);
+
+                if (user == null)
+                    throw new UnauthorizedAccessException();
+
+                return Request.CreateResponse(HttpStatusCode.OK, user);
+            }
+            catch(UnauthorizedAccessException uex)
+            {
+                return Request.CreateResponse(HttpStatusCode.Unauthorized, uex);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }
+           
         }
 
         public async Task<HttpResponseMessage> Delete(string email)

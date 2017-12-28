@@ -13,7 +13,7 @@ using ViveVolar.Services.FlightService;
 
 namespace ViveVolar.WebApi.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     [RoutePrefix("api/Flight")]
     public class FlightController: ApiController
     {

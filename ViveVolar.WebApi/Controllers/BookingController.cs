@@ -8,10 +8,14 @@ using System.Web.Http;
 using ViveVolar.Entities;
 using ViveVolar.Models;
 using ViveVolar.Services.BookingService;
+using ViveVolar.WebApi.Filters;
 
 namespace ViveVolar.WebApi.Controllers
 {
+   
     [RoutePrefix("api/Booking")]
+    [JwtAuthentication]
+    [Authorize]
     public class BookingController : ApiController
     {
         private readonly IBookingService _bookingService;

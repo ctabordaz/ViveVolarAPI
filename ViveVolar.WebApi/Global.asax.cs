@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Routing;
+﻿using System.Web.Http;
 using ViveVolar.WebApi.App_Start;
 using ViveVolar.WebApi.Mapper;
 
@@ -13,6 +8,7 @@ namespace ViveVolar.WebApi
     {
         protected void Application_Start()
         {
+            
             Bootstrapper.Run();
             AutoMapperConfiguration.Configure();
             GlobalConfiguration.Configure(WebApiConfig.Register);
