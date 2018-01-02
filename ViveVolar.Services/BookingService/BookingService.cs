@@ -9,6 +9,7 @@ using ViveVolar.Entities;
 using ViveVolar.Models;
 using ViveVolar.Repositories.BookingRepository;
 using ViveVolar.Services.FlightService;
+using ViveVolar.Services.Smpt;
 
 namespace ViveVolar.Services.BookingService
 {
@@ -37,6 +38,7 @@ namespace ViveVolar.Services.BookingService
             {
                 bookingEntity.RowKey = (long.MaxValue - DateTime.UtcNow.Ticks).ToString();
             }
+
             return Mapper.Map<Booking>( await this._bookingRepository.AddOrUpdateAsync(bookingEntity));
         }
 

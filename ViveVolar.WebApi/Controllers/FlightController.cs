@@ -92,7 +92,7 @@ namespace ViveVolar.WebApi.Controllers
             {
                 var flightlist = await this._flightService.SearchFlightsAsync(search);
                 
-                return Request.CreateResponse(HttpStatusCode.OK, flightlist);
+                return Request.CreateResponse(HttpStatusCode.OK, flightlist.OrderBy(x => x.Price));
             }
             catch (Exception ex)
             {

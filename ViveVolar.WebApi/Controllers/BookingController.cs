@@ -8,6 +8,8 @@ using System.Web.Http;
 using ViveVolar.Entities;
 using ViveVolar.Models;
 using ViveVolar.Services.BookingService;
+using ViveVolar.Services.FlightService;
+using ViveVolar.Services.Smpt;
 using ViveVolar.WebApi.Filters;
 
 namespace ViveVolar.WebApi.Controllers
@@ -19,10 +21,12 @@ namespace ViveVolar.WebApi.Controllers
     public class BookingController : ApiController
     {
         private readonly IBookingService _bookingService;
+        private readonly IFlightService _flightService;
 
-        public BookingController(IBookingService _bookingService)
+        public BookingController(IBookingService _bookingService, IFlightService _flightService)
         {
             this._bookingService = _bookingService;
+            this._flightService = _flightService;
         }
 
         public async Task<HttpResponseMessage> Get()
@@ -58,6 +62,10 @@ namespace ViveVolar.WebApi.Controllers
             try
             {
                 var booking = await this._bookingService.AddOrUpdateAsync(newBooking);
+                var flight = await this._flightService.GetAsync(booking.FlightId);
+                string body = string.Format("Su vuelo {0}-{1} para el {2} ha sido reservado exitosamente",flight.SourceCity,flight.DestinationCity,flight.Date.ToShortDateString());
+                string subject = string.Format("Reserva #{0}", booking.Id);
+                SmptFunctions.sendEmail(booking.UserId, subject, body);
                 return Request.CreateResponse(HttpStatusCode.OK, booking);
             }
             catch (Exception)
