@@ -84,7 +84,8 @@
     <Compile Include="FlightService\FlightService.cs" />
     <Compile Include="FlightService\IFlightService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Smpt\SmptFunctions.cs" />
+    <Compile Include="Smpt\ISmptService.cs" />
+    <Compile Include="Smpt\SmptService.cs" />
     <Compile Include="UserService\IUserService.cs" />
     <Compile Include="UserService\UserService.cs" />
   </ItemGroup>

@@ -36,6 +36,8 @@ namespace ViveVolar.WebApi.App_Start
             builder.RegisterAssemblyTypes(typeof(BookingService).Assembly)
                 .Where(t => t.Name.EndsWith("Service"))
                 .AsImplementedInterfaces().InstancePerRequest();
+
+            
             
             Container = builder.Build();
 

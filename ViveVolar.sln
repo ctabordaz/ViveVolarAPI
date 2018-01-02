@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViveVolar.WebApi", "ViveVolar.WebApi\ViveVolar.WebApi.csproj", "{247B435D-53F8-4817-B73F-FC4F90633ECA}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViveVolar.Services", "ViveVolar.Services\ViveVolar.Services.csproj", "{8E59E589-3E3F-4718-AAAF-E2B66D939F25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViveVolar.Models", "ViveVolar.Models\ViveVolar.Models.csproj", "{1E674521-15C1-41DF-891F-E79A8F7BE7C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0364D1CC-D9F8-4CE7-8C07-6071DD7FF26D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViveVolarAPI.Tests", "ViveVolarAPI.Tests\ViveVolarAPI.Tests.csproj", "{BD6C4B88-CB70-4A0C-9800-6D6EA3B5F624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +43,16 @@ Global
 		{1E674521-15C1-41DF-891F-E79A8F7BE7C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E674521-15C1-41DF-891F-E79A8F7BE7C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E674521-15C1-41DF-891F-E79A8F7BE7C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD6C4B88-CB70-4A0C-9800-6D6EA3B5F624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD6C4B88-CB70-4A0C-9800-6D6EA3B5F624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD6C4B88-CB70-4A0C-9800-6D6EA3B5F624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD6C4B88-CB70-4A0C-9800-6D6EA3B5F624}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BD6C4B88-CB70-4A0C-9800-6D6EA3B5F624} = {0364D1CC-D9F8-4CE7-8C07-6071DD7FF26D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FB65DF2-5C82-4228-AEDA-D555BC394FB6}

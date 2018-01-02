@@ -48,7 +48,7 @@ namespace ViveVolar.Services.UserService
                 return null;
 
 
-              var userEntity = await this._userRepository.GetAsync(username);
+            var userEntity = await this._userRepository.GetAsync(username);
 
 
             if (userEntity == null)

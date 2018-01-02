@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ViveVolar.Services.Smpt
 {
-    public class SmptFunctions
+    public class SmptService : ISmptService
     {
-        public static void sendEmail(string to, string subject, string body)
+        public void sendEmail(string to, string subject, string body)
         {
             try
             {
@@ -28,11 +28,10 @@ namespace ViveVolar.Services.Smpt
 
                 client.Send(mm);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-            }
 
+            }
         }
     }
 }
