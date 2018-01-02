@@ -10,11 +10,14 @@ using System.Web.Http.Cors;
 using ViveVolar.Entities;
 using ViveVolar.Models;
 using ViveVolar.Services.FlightService;
+using ViveVolar.WebApi.Filters;
 
 namespace ViveVolar.WebApi.Controllers
 {
 
     [RoutePrefix("api/Flight")]
+    [JwtAuthentication]
+    [Authorize]
     public class FlightController: ApiController
     {
         private readonly IFlightService _flightService;
@@ -77,6 +80,24 @@ namespace ViveVolar.WebApi.Controllers
             {
 
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
+
+        [AllowAnonymous]
+        [Route("search")]
+        public async Task<HttpResponseMessage> Search(Search search)
+        {
+            try
+            {
+                var flightlist = await this._flightService.SearchFlightsAsync(search);
+                
+                return Request.CreateResponse(HttpStatusCode.OK, flightlist);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError,ex);
             }
         }
 

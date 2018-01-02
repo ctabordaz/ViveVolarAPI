@@ -46,13 +46,21 @@ namespace ViveVolar.Repositories.UserRepository
 
         public async Task<IEnumerable<UserEntity>> QueryAsync(string squery)
         {
-            TableQuery<UserEntity> query = new TableQuery<UserEntity>()
-                .Where(
-                TableQuery.CombineFilters(
+            string combinedQuery = string.Empty;
+            if (string.IsNullOrEmpty(squery))
+            {
+                combinedQuery = TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, _partitionKey);
+            }
+            else
+            {
+                combinedQuery = TableQuery.CombineFilters(
                         TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, _partitionKey),
                         TableOperators.And,
                         squery
-                ));
+                );
+            }
+            TableQuery<UserEntity> query = new TableQuery<UserEntity>()
+                .Where(combinedQuery);
             return await this._tableRepository.QueryAsync<UserEntity>(query);
         }
 

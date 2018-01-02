@@ -8,16 +8,19 @@ using System.Threading.Tasks;
 using ViveVolar.Entities;
 using ViveVolar.Models;
 using ViveVolar.Repositories.BookingRepository;
+using ViveVolar.Services.FlightService;
 
 namespace ViveVolar.Services.BookingService
 {
     public class BookingService:IBookingService
     {
-        private IBookingRepository _bookingRepository;
+        private readonly IBookingRepository _bookingRepository;
+        private readonly IFlightService _flightService;
 
-        public BookingService(IBookingRepository _bookingRepository)
+        public BookingService(IBookingRepository _bookingRepository, IFlightService _flightService)
         {
             this._bookingRepository =_bookingRepository;
+            this._flightService = _flightService;
         }
 
 
@@ -30,6 +33,10 @@ namespace ViveVolar.Services.BookingService
         public async Task<Booking> AddOrUpdateAsync(Booking entity)
         {
             var bookingEntity = Mapper.Map<BookingEntity>(entity);
+            if (string.IsNullOrEmpty(bookingEntity.RowKey))
+            {
+                bookingEntity.RowKey = (long.MaxValue - DateTime.UtcNow.Ticks).ToString();
+            }
             return Mapper.Map<Booking>( await this._bookingRepository.AddOrUpdateAsync(bookingEntity));
         }
 
@@ -52,7 +59,13 @@ namespace ViveVolar.Services.BookingService
         public async Task<IEnumerable<Booking>> GetByUserIdAsync(string user)
         {
             string query = TableQuery.GenerateFilterCondition("UserId", QueryComparisons.Equal, user);
-            return await QueryAsync(query);
+            var bookings = await QueryAsync(query);
+            foreach (var booking in bookings)
+            {
+                booking.Flight = await this._flightService.GetAsync(booking.FlightId);
+            }
+
+            return bookings;
         }
 
         public async Task<IEnumerable<Booking>> QueryAsync(string query)

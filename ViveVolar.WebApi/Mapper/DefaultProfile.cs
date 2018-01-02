@@ -27,7 +27,10 @@ namespace ViveVolar.WebApi.Mapper
             CreateMap<FlightEntity, Flight>()
                 .ForMember(g => g.FlightNumber, map => map.MapFrom(vm => vm.RowKey));
 
-            CreateMap<BookingEntity, Booking>();
+            CreateMap<BookingEntity, Booking>()
+                .ForMember(g => g.Id, map => map.MapFrom(vm => vm.RowKey));
+
+            
                 
             //Model to Entity
             CreateMap<User, UserEntity>()
@@ -36,7 +39,8 @@ namespace ViveVolar.WebApi.Mapper
             CreateMap<Flight, FlightEntity>()
                 .ForMember(g => g.RowKey, map => map.MapFrom(vm => vm.FlightNumber));
 
-            CreateMap<Booking, BookingEntity>();
+            CreateMap<Booking, BookingEntity>()
+                .ForMember(g => g.RowKey, map => map.MapFrom(vm => vm.Id));
         }
     }
 }

@@ -80,5 +80,20 @@ namespace ViveVolar.WebApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
+
+        [Route("getByUser")]
+        public async Task<HttpResponseMessage> getByUser(string id)
+        {
+            try
+            {
+                var booking = await this._bookingService.GetByUserIdAsync(id);
+                return Request.CreateResponse(HttpStatusCode.OK, booking);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError,ex);
+            }
+        }
     }
 }
